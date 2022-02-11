@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package balanceService;
+
+option go_package = "./balanceService";
+
+service Balance{
+  rpc Check(CheckRequest) returns (CheckResponse);
+  rpc TopUp(TopUpRequest) returns (TopUpResponse);
+  rpc Withdraw(WithdrawRequest) returns (WithdrawResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+}
+
+message CheckRequest{
+  string user_id = 1;
+  float required_balance = 2;
+}
+
+message CheckResponse{
+  bool ok = 1;
+}
+
+message TopUpRequest{
+  string user_id = 1;
+  float shift = 2;
+}
+
+message TopUpResponse{
+  string result = 1;
+}
+
+message WithdrawRequest{
+  string user_id = 1;
+  float shift = 2;
+}
+
+message WithdrawResponse{
+  string result = 1;
+}
+
+message GetRequest{
+  string user_id = 1;
+}
+
+message GetResponse{
+  float balance = 1;
+}
